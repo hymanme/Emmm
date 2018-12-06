@@ -17,7 +17,7 @@ import retrofit2.Response;
  * Author   :hymane
  * Email    :hymanmee@gmail.com
  * Create at 2018-11-30
- * Description:通用数据解析function，只返回返回值1000结果
+ * Description:通用数据解析function
  */
 public class XNetworkFunction<T> implements Function<Response<ResponseBody>, T> {
     private Class<T> mClazz;

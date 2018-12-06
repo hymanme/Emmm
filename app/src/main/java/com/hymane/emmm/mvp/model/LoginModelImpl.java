@@ -5,7 +5,7 @@ import com.hymane.emmm.mvp.contract.ILoginContract;
 import com.hymane.emmm.network.Server;
 import com.hymane.emmm.network.api.ApiConstant;
 import com.hymane.emmm.network.utils.SimpleObserver;
-import com.hymane.emmm.response.UserResp;
+import com.hymane.emmm.response.User;
 
 import java.util.HashMap;
 
@@ -19,7 +19,7 @@ import io.reactivex.functions.Function;
  */
 public class LoginModelImpl extends BaseModelImpl implements ILoginContract.Model {
     @Override
-    public void login(final String userId, String password, SimpleObserver<UserResp> observer) {
+    public void login(final String userId, String password, SimpleObserver<User> observer) {
         HashMap<String, Object> params = newParams();
         params.put("userId", userId);
         params.put("password", password);
@@ -31,10 +31,10 @@ public class LoginModelImpl extends BaseModelImpl implements ILoginContract.Mode
         HashMap<String, Object> params = newParams();
         params.put("userId", userId);
         params.put("password", password);
-        Server.instance().xGet(ApiConstant.User.LOGIN, params, UserResp.User.class)
-                .map(new Function<UserResp.User, String>() {
+        Server.instance().xGet(ApiConstant.User.LOGIN, params, User.User.class)
+                .map(new Function<User.User, String>() {
                     @Override
-                    public String apply(UserResp.User user) throws Exception {
+                    public String apply(User.User user) throws Exception {
                         return user.name;
                     }
                 })

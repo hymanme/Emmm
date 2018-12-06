@@ -18,6 +18,11 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class RxSchedulers {
 
+    /***
+     * io 转 MainThread
+     * @param <T>
+     * @return
+     */
     public static <T> ObservableTransformer<T, T> applyObservableAsync() {
         return new ObservableTransformer<T, T>() {
             @Override
@@ -28,6 +33,11 @@ public class RxSchedulers {
         };
     }
 
+    /***
+     * 计算密集型 转 MainThread
+     * @param <T>
+     * @return
+     */
     public static <T> ObservableTransformer<T, T> applyObservableCompute() {
         return new ObservableTransformer<T, T>() {
             @Override
@@ -38,40 +48,63 @@ public class RxSchedulers {
         };
     }
 
+    /***
+     * mainThread
+     * @param <T>
+     * @return
+     */
     public static <T> ObservableTransformer<T, T> applyObservableMainThread() {
         return new ObservableTransformer<T, T>() {
             @Override
             public ObservableSource<T> apply(Observable<T> observable) {
-                return observable.observeOn(AndroidSchedulers.mainThread());
+                return observable.subscribeOn(AndroidSchedulers.mainThread())
+                        .observeOn(AndroidSchedulers.mainThread());
             }
         };
     }
 
+    /***
+     * Flowable MainThread
+     * @param <T>
+     * @return
+     */
     public static <T> FlowableTransformer<T, T> applyFlowableMainThread() {
         return new FlowableTransformer<T, T>() {
             @Override
             public Publisher<T> apply(Flowable<T> flowable) {
-                return flowable.observeOn(AndroidSchedulers.mainThread());
+                return flowable.subscribeOn(AndroidSchedulers.mainThread())
+                        .observeOn(AndroidSchedulers.mainThread());
             }
         };
     }
 
+    /***
+     * Flowable io thread
+     * @param <T>
+     * @return
+     */
     public static <T> FlowableTransformer<T, T> applyFlowableAsync() {
         return new FlowableTransformer<T, T>() {
             @Override
             public Publisher<T> apply(Flowable<T> flowable) {
-                return flowable.observeOn(AndroidSchedulers.mainThread());
+                return flowable.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread());
             }
         };
     }
 
+    /***
+     * Flowable Compute thread
+     * @param <T>
+     * @return
+     */
     public static <T> FlowableTransformer<T, T> applyFlowableCompute() {
         return new FlowableTransformer<T, T>() {
             @Override
             public Publisher<T> apply(Flowable<T> flowable) {
-                return flowable.observeOn(AndroidSchedulers.mainThread());
+                return flowable.subscribeOn(Schedulers.computation())
+                        .observeOn(AndroidSchedulers.mainThread());
             }
         };
     }
-
 }

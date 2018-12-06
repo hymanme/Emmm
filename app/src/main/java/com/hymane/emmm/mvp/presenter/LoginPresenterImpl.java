@@ -6,7 +6,7 @@ import com.hymane.emmm.mvp.BasePresenter;
 import com.hymane.emmm.mvp.contract.ILoginContract;
 import com.hymane.emmm.mvp.model.LoginModelImpl;
 import com.hymane.emmm.network.utils.SimpleObserver;
-import com.hymane.emmm.response.UserResp;
+import com.hymane.emmm.response.User;
 
 /**
  * Author   :hymane
@@ -22,7 +22,7 @@ public class LoginPresenterImpl extends BasePresenter<ILoginContract.Model, ILog
 
     @Override
     public void login(final String userId, String password) {
-        model().login(userId, password, new SimpleObserver<UserResp>(this) {
+        model().login(userId, password, new SimpleObserver<User>(this) {
             @Override
             public void onStart() {
                 if (isViewAttached()) {
@@ -31,7 +31,7 @@ public class LoginPresenterImpl extends BasePresenter<ILoginContract.Model, ILog
             }
 
             @Override
-            public void onSuccess(UserResp user) {
+            public void onSuccess(User user) {
                 if (isViewAttached()) {
                     view().onLogin(user.getData());
                 }

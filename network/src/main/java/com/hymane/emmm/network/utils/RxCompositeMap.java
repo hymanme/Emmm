@@ -6,6 +6,12 @@ import java.util.Map;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
+/**
+ * Author   :hymane
+ * Email    :hymanmee@gmail.com
+ * Create at 2016-08-05
+ * Description: Composite 集合
+ */
 public class RxCompositeMap {
     private Map<Object, CompositeDisposable> compositeDisposableMap;
 

@@ -3,7 +3,7 @@ package com.hymane.emmm.mvp.contract;
 import com.hymane.emmm.mvp.BaseViewImpl;
 import com.hymane.emmm.mvp.IBaseContract;
 import com.hymane.emmm.network.utils.SimpleObserver;
-import com.hymane.emmm.response.UserResp;
+import com.hymane.emmm.response.User;
 
 /**
  * Author   :hymane
@@ -13,13 +13,13 @@ import com.hymane.emmm.response.UserResp;
  */
 public interface ILoginContract {
     interface Model extends IBaseContract.Model {
-        void login(String userId, String password, SimpleObserver<UserResp> observer);
+        void getUserProfile(String userId, String password, SimpleObserver<User> observer);
 
         void saveUser2DB(String userId, String password, SimpleObserver<String> observer);
     }
 
     interface View extends IBaseContract.View {
-        void onLogin(UserResp.User user);
+        void onLogin(User user);
     }
 
     interface Presenter extends IBaseContract.Presenter {
@@ -29,7 +29,7 @@ public interface ILoginContract {
     class ViewImpl extends BaseViewImpl implements View {
 
         @Override
-        public void onLogin(UserResp.User user) {
+        public void onLogin(User user) {
 
         }
 

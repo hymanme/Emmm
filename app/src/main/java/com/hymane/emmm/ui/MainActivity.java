@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.hymane.emmm.R;
 import com.hymane.emmm.mvp.contract.ILoginContract;
 import com.hymane.emmm.mvp.presenter.LoginPresenterImpl;
-import com.hymane.emmm.response.UserResp;
+import com.hymane.emmm.response.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ILoginContract.ViewImpl view = new ILoginContract.ViewImpl() {
         @Override
-        public void onLogin(UserResp.User user) {
+        public void onLogin(User.User user) {
             super.onLogin(user);
         }
 
