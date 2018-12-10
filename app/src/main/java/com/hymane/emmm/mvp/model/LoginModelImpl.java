@@ -9,8 +9,6 @@ import com.hymane.emmm.response.User;
 
 import java.util.HashMap;
 
-import io.reactivex.functions.Function;
-
 /**
  * Author   :hymane
  * Email    :hymanmee@gmail.com
@@ -18,8 +16,9 @@ import io.reactivex.functions.Function;
  * Description:
  */
 public class LoginModelImpl extends BaseModelImpl implements ILoginContract.Model {
+
     @Override
-    public void login(final String userId, String password, SimpleObserver<User> observer) {
+    public void getUserProfile(String userId, String password, SimpleObserver<User> observer) {
         HashMap<String, Object> params = newParams();
         params.put("userId", userId);
         params.put("password", password);
@@ -31,13 +30,13 @@ public class LoginModelImpl extends BaseModelImpl implements ILoginContract.Mode
         HashMap<String, Object> params = newParams();
         params.put("userId", userId);
         params.put("password", password);
-        Server.instance().xGet(ApiConstant.User.LOGIN, params, User.User.class)
-                .map(new Function<User.User, String>() {
-                    @Override
-                    public String apply(User.User user) throws Exception {
-                        return user.name;
-                    }
-                })
-                .subscribe(observer);
+//        Server.instance().xGet(ApiConstant.User.LOGIN, params, User.User.class)
+//                .map(new Function<User.User, String>() {
+//                    @Override
+//                    public String apply(User.User user) throws Exception {
+//                        return user.name;
+//                    }
+//                })
+//                .subscribe(observer);
     }
 }

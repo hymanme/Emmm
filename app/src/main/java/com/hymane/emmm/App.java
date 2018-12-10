@@ -15,7 +15,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         Emmm.init(this,
-                new Emmm.Config()
-                        .baseUrl("https://www.hymane.com"));
+                new Emmm.Config().baseUrl("https://www.hymane.com"));
     }
 }

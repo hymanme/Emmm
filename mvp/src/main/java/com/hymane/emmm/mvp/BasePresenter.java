@@ -25,6 +25,7 @@ import java.lang.ref.WeakReference;
 public class BasePresenter<M extends IBaseContract.Model, V extends IBaseContract.View> implements IBaseContract.Presenter, LifecycleObserver {
     //V层弱引用，防止内存泄漏
     private WeakReference<V> mViewRefer;
+    private LifecycleOwner mOwner;
     @NonNull
     private M mModel;
 
@@ -39,7 +40,8 @@ public class BasePresenter<M extends IBaseContract.Model, V extends IBaseContrac
         mModel = model;
         // Lifecycle，实现生命周期方法，
         // 子类可根据具体需求，处理特定逻辑
-        if(owner!=null){
+        this.mOwner = owner;
+        if (owner != null) {
             owner.getLifecycle().addObserver(this);
         }
     }
@@ -84,6 +86,9 @@ public class BasePresenter<M extends IBaseContract.Model, V extends IBaseContrac
             mViewRefer = null;
         }
         RxCompositeMap.getInstance().remove(this);
+        if (mOwner != null) {
+            mOwner.getLifecycle().removeObserver(this);
+        }
     }
 
     /*************** Lifecycle ****************/

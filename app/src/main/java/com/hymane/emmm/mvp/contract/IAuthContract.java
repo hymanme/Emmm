@@ -1,12 +1,10 @@
 package com.hymane.emmm.mvp.contract;
 
-import com.hymane.emmm.mvp.BaseViewImpl;
 import com.hymane.emmm.mvp.IBaseContract;
 import com.hymane.emmm.network.utils.SimpleObserver;
 import com.hymane.emmm.response.BaseResp;
 import com.hymane.emmm.response.RefreshToken;
 import com.hymane.emmm.response.Token;
-import com.hymane.emmm.response.User;
 
 /**
  * Author   :hymane

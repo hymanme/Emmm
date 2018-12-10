@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ILoginContract.ViewImpl view = new ILoginContract.ViewImpl() {
         @Override
-        public void onLogin(User.User user) {
+        public void onLogin(User user) {
             super.onLogin(user);
         }
 

@@ -22,7 +22,7 @@ public class LoginPresenterImpl extends BasePresenter<ILoginContract.Model, ILog
 
     @Override
     public void login(final String userId, String password) {
-        model().login(userId, password, new SimpleObserver<User>(this) {
+        model().getUserProfile(userId, password, new SimpleObserver<User>(this) {
             @Override
             public void onStart() {
                 if (isViewAttached()) {
@@ -33,7 +33,7 @@ public class LoginPresenterImpl extends BasePresenter<ILoginContract.Model, ILog
             @Override
             public void onSuccess(User user) {
                 if (isViewAttached()) {
-                    view().onLogin(user.getData());
+                    view().onLogin(user);
                 }
             }
 
