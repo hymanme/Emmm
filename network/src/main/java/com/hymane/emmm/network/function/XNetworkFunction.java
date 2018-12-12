@@ -1,14 +1,10 @@
 package com.hymane.emmm.network.function;
 
-import android.support.annotation.NonNull;
-
 import com.google.gson.Gson;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.net.UnknownHostException;
 
-import io.reactivex.Observer;
+import androidx.annotation.NonNull;
 import io.reactivex.functions.Function;
 import okhttp3.ResponseBody;
 import retrofit2.Response;

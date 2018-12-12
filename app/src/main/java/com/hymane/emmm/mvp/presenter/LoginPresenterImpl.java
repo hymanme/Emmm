@@ -1,12 +1,12 @@
 package com.hymane.emmm.mvp.presenter;
 
-import android.arch.lifecycle.LifecycleOwner;
-
 import com.hymane.emmm.mvp.BasePresenter;
 import com.hymane.emmm.mvp.contract.ILoginContract;
 import com.hymane.emmm.mvp.model.LoginModelImpl;
 import com.hymane.emmm.network.utils.SimpleObserver;
 import com.hymane.emmm.response.User;
+
+import androidx.lifecycle.LifecycleOwner;
 
 /**
  * Author   :hymane

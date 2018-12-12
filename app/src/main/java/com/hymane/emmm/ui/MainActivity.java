@@ -1,43 +1,59 @@
 package com.hymane.emmm.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.hymane.emmm.R;
-import com.hymane.emmm.mvp.contract.ILoginContract;
-import com.hymane.emmm.mvp.presenter.LoginPresenterImpl;
-import com.hymane.emmm.response.User;
+import com.hymane.emmm.core.ui.base.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.annotation.Nullable;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-    private LoginPresenterImpl presenter;
+public class MainActivity extends BaseActivity {
+    @BindView(R.id.button)
+    Button button;
+
+    @BindView(R.id.hhh)
+    Button hhh;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        presenter = new LoginPresenterImpl(view, this);
     }
 
-    private ILoginContract.ViewImpl view = new ILoginContract.ViewImpl() {
-        @Override
-        public void onLogin(User user) {
-            super.onLogin(user);
-        }
+    @OnClick(R.id.button)
+    void buttonClick() {
+        startActivity(new Intent(this, MovieActivity.class));
+    }
 
-        @Override
-        public void showLoading() {
-            super.showLoading();
-        }
+    @Override
+    protected void initContentView() {
+        setContentView(R.layout.activity_main);
+    }
 
-        @Override
-        public void hideLoading() {
-            super.hideLoading();
-        }
+    @Override
+    protected void initData() {
 
-        @Override
-        public void onFailed(int code, String msg) {
-            super.onFailed(code, msg);
+    }
+
+    @Override
+    protected void initEvents() {
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MovieActivity.class));
+            }
+        });
+        if (hhh != null) {
+            Toast.makeText(this, "not null", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "== null", Toast.LENGTH_SHORT).show();
         }
-    };
+    }
 }

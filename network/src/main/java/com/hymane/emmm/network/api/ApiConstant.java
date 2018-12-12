@@ -18,4 +18,8 @@ public class ApiConstant {
         public static final String PROFILE = "/user/getUserProfile";
         public static final String LOGIN = "/user/login";
     }
+
+    public static final class Movie {
+        public static final String TOP250 = "https://api.douban.com/v2/movie/top250";
+    }
 }
