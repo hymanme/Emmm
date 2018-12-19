@@ -65,7 +65,7 @@ public abstract class SimpleObserver<T> implements Observer<T> {
         //tag 如果来源不是 BaseActivity 或者 BaseFragment
         //谨记 必须在tag 回收销毁的时候 调用RxCompositeMap.getInstance().clear(tag);
         if (tag != null) {
-            RxCompositeMap.getInstance().add(tag, d);
+            RxCompositeManager.getInstance().add(tag, d);
         }
         onStart();
     }

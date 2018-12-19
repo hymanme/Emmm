@@ -7,16 +7,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.hymane.emmm.core.R;
-import com.hymane.emmm.core.R2;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -30,9 +27,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected final String TAG = getClass().getSimpleName();
     protected Toolbar mToolbar;
     protected Unbinder unbinder;
-    @Nullable
-    @BindView(R2.id.tv_title)
-    TextView tv_title;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,22 +73,6 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public Toolbar getToolbar() {
         return mToolbar;
-    }
-
-    @Override
-    public void setTitle(CharSequence title) {
-        if (tv_title != null) {
-            tv_title.setText(title);
-        }
-        super.setTitle(title);
-    }
-
-    @Override
-    public void setTitle(int titleId) {
-        if (tv_title != null) {
-            tv_title.setText(titleId);
-        }
-        super.setTitle(titleId);
     }
 
     @Override
@@ -160,20 +138,20 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 是否初始化状态栏
-     *
-     * @return
-     */
-    protected boolean isInitSystemBar() {
-        return false;
-    }
-
-    /**
      * 是否显示菜单  默认显示
      *
      * @return
      */
     protected boolean showMenu() {
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (unbinder != null) {
+            unbinder.unbind();
+            unbinder = null;
+        }
     }
 }

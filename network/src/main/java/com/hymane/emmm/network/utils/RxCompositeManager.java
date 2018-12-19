@@ -12,14 +12,14 @@ import io.reactivex.disposables.Disposable;
  * Create at 2016-08-05
  * Description: Composite 集合
  */
-public class RxCompositeMap {
+public class RxCompositeManager {
     private Map<Object, CompositeDisposable> compositeDisposableMap;
 
-    private RxCompositeMap() {
+    private RxCompositeManager() {
         compositeDisposableMap = new HashMap<>();
     }
 
-    public static RxCompositeMap getInstance() {
+    public static RxCompositeManager getInstance() {
         return Inner.INSTANCE;
     }
 
@@ -44,6 +44,6 @@ public class RxCompositeMap {
     }
 
     private static final class Inner {
-        private static RxCompositeMap INSTANCE = new RxCompositeMap();
+        private static RxCompositeManager INSTANCE = new RxCompositeManager();
     }
 }

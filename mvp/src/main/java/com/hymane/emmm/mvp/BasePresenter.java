@@ -2,7 +2,7 @@ package com.hymane.emmm.mvp;
 
 import android.util.Log;
 
-import com.hymane.emmm.network.utils.RxCompositeMap;
+import com.hymane.emmm.network.utils.RxCompositeManager;
 
 import java.lang.ref.WeakReference;
 
@@ -88,7 +88,7 @@ public class BasePresenter<M extends IBaseContract.Model, V extends IBaseContrac
             mViewRefer.clear();
             mViewRefer = null;
         }
-        RxCompositeMap.getInstance().remove(this);
+        RxCompositeManager.getInstance().remove(this);
         if (mOwner != null) {
             mOwner.getLifecycle().removeObserver(this);
         }

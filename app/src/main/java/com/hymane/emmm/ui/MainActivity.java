@@ -15,18 +15,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
-    @BindView(R.id.button)
-    Button button;
-
-    @BindView(R.id.hhh)
-    Button hhh;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        ButterKnife.bind(this);
-        super.onCreate(savedInstanceState);
-    }
-
     @OnClick(R.id.button)
     void buttonClick() {
         startActivity(new Intent(this, MovieActivity.class));
@@ -44,16 +32,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initEvents() {
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MovieActivity.class));
-            }
-        });
-        if (hhh != null) {
-            Toast.makeText(this, "not null", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this, "== null", Toast.LENGTH_SHORT).show();
-        }
+
     }
 }

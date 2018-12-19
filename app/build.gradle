@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -31,7 +32,14 @@ dependencies {
     implementation project(":mvp")
     implementation project(":network")
 
+    // [:core]组件已经引入butterknife库，应用模块仅需引入编译库即可(必需)
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1-beta01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1-beta01'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

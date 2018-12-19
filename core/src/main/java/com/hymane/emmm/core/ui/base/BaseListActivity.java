@@ -1,9 +1,11 @@
-package com.hymane.emmm.core.ui.activity;
+package com.hymane.emmm.core.ui.base;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.hymane.emmm.core.R;
 import com.hymane.emmm.core.R2;
 import com.hymane.emmm.core.ui.base.BaseActivity;
+
+import java.util.List;
 
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -32,8 +34,8 @@ public abstract class BaseListActivity extends BaseActivity implements SwipeRefr
     protected MultiTypeAdapter mAdapter;
     protected Items mItems;
 
-    protected boolean isLoadAll;
-    protected int page;
+    private boolean isLoadAll;
+    private int mPageIndex;
 
     @Override
     protected void initContentView() {
@@ -59,7 +61,8 @@ public abstract class BaseListActivity extends BaseActivity implements SwipeRefr
 
     @Override
     protected void initEvents() {
-        onRefresh();//页面首次刷新数据
+        //页面首次刷新数据
+        onRefresh();
         mRecyclerView.addOnScrollListener(new RecyclerViewScrollDetector());
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
@@ -80,7 +83,68 @@ public abstract class BaseListActivity extends BaseActivity implements SwipeRefr
     /***
      * 加载更多
      */
-    protected abstract void onLoadMore();
+    public abstract void onLoadMore();
+
+    /***
+     * 是否已加载全部
+     * @return
+     */
+    public boolean isLoadAll() {
+        return isLoadAll;
+    }
+
+    /***
+     * 当前页
+     * @return
+     */
+    public int pageIndex() {
+        return mPageIndex;
+    }
+
+    /***
+     * 刷新页
+     */
+    public void resetPage() {
+        mPageIndex = 0;
+    }
+
+    /***
+     * 下一页，当前页加1
+     */
+    public void nextPage() {
+        nextPage(1);
+    }
+
+    /***
+     * 跳转指定页
+     * @param offset 调到offset页
+     */
+    public void nextPage(int offset) {
+        mPageIndex += offset;
+    }
+
+    /***
+     * 统一处理数据集更新
+     * @param items
+     */
+    protected void notifyItemRangeInserted(List items) {
+        int preSize = mItems.size();
+        if (pageIndex() == 0 && !mItems.isEmpty()) {
+            mItems.clear();
+            mAdapter.notifyItemRangeRemoved(0, preSize);
+        }
+        mItems.addAll(items);
+        nextPage();
+        mAdapter.notifyItemRangeInserted(preSize, items.size());
+    }
+
+    /***
+     *  检查是否还有更多数据待加载
+     * @param size 本次请求数据集大小
+     */
+    public void checkHasMoreData(int size) {
+        isLoadAll = size < PAGE_SIZE;
+    }
 
     public void showLoadingView() {
         mSwipeRefreshLayout.setRefreshing(true);

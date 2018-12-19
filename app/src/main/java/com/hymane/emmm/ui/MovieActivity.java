@@ -1,8 +1,9 @@
 package com.hymane.emmm.ui;
 
+import android.content.Intent;
 import android.widget.Toast;
 
-import com.hymane.emmm.core.ui.activity.BaseListActivity;
+import com.hymane.emmm.core.ui.base.BaseListActivity;
 import com.hymane.emmm.mvp.contract.IMovieContract;
 import com.hymane.emmm.mvp.presenter.MoviePresenterImpl;
 import com.hymane.emmm.response.douban.MovieResp;
@@ -21,34 +22,41 @@ public class MovieActivity extends BaseListActivity {
     private MoviePresenterImpl presenter;
 
     @Override
-    protected void register() {
-        presenter = new MoviePresenterImpl(view, this);
-        mAdapter.register(MovieResp.Subject.class, new MovieBinder());
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
     }
 
     @Override
     protected void initData() {
         super.initData();
         setTitle("Movie");
+        presenter = new MoviePresenterImpl(view, this);
+    }
+
+    @Override
+    protected void register() {
+        mAdapter.register(MovieResp.Subject.class, new MovieBinder(view));
     }
 
     @Override
     public void onRefresh() {
-        page = 0;
-        presenter.getTopMovies(page * PAGE_SIZE, PAGE_SIZE);
+        resetPage();
+        presenter.getTopMovies(pageIndex() * PAGE_SIZE, PAGE_SIZE);
     }
 
     @Override
-    protected void onLoadMore() {
-        presenter.getTopMovies(page * PAGE_SIZE, PAGE_SIZE);
+    public void onLoadMore() {
+        if (!isLoadAll()) {
+            presenter.getTopMovies(pageIndex() * PAGE_SIZE, PAGE_SIZE);
+        }
     }
 
     private IMovieContract.ViewImpl view = new IMovieContract.ViewImpl() {
         @Override
         public void onGetTopMovies(List<MovieResp.Subject> subjects) {
-            mItems.addAll(subjects);
-            page++;
-            mAdapter.notifyDataSetChanged();
+            notifyItemRangeInserted(subjects);
+            checkHasMoreData(subjects.size());
         }
 
         @Override

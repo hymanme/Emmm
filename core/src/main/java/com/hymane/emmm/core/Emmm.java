@@ -6,13 +6,17 @@ import android.content.Context;
  * Author   :hymane
  * Email    :hymanmee@gmail.com
  * Create at 2018/11/13
- * Description:
+ * Description: Emmm 初始化器
  */
 public class Emmm {
     private static Context mContext;
     private static Config mBuilder;
     private static boolean initialized = false;
 
+    /***
+     * 初始化组件
+     * @param context Application Context
+     */
     public static void init(Context context) {
         init(context, new Config());
     }

@@ -47,5 +47,4 @@ public interface IMovieContract {
 
         }
     }
-
 }

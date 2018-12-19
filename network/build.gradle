@@ -31,10 +31,11 @@ dependencies {
     //okhttp3 & okio
     api 'com.squareup.okhttp3:okhttp:3.11.0'
     api 'com.squareup.okio:okio:1.14.0'
+
     //Retrofit2
-    api 'com.squareup.retrofit2:retrofit:2.3.0'
-    api 'com.squareup.retrofit2:converter-gson:2.3.0'
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
     testImplementation 'junit:junit:4.12'
 }
