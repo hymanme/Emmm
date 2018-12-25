@@ -5,12 +5,17 @@ import com.hymane.emmm.mvp.contract.IAuthContract;
 import com.hymane.emmm.network.Server;
 import com.hymane.emmm.network.api.ApiConstant;
 import com.hymane.emmm.network.function.ConvertFunction;
+import com.hymane.emmm.network.utils.RxSchedulers;
 import com.hymane.emmm.network.utils.SimpleObserver;
 import com.hymane.emmm.response.BaseResp;
 import com.hymane.emmm.response.RefreshToken;
 import com.hymane.emmm.response.Token;
+import com.hymane.emmm.response.User;
 
 import java.util.HashMap;
+
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Function;
 
 /**
  * Author   :hymane
@@ -21,13 +26,18 @@ import java.util.HashMap;
 public class AuthModelImpl extends BaseModelImpl implements IAuthContract.Model {
 
     @Override
-    public void login(String userId, String password, SimpleObserver<Token> observer) {
+    public void login(String userId, String password, SimpleObserver<User> observer) {
         HashMap<String, Object> params = newParams();
         params.put("userId", userId);
         params.put("password", password);
 
-        Server.instance().xPost(ApiConstant.Auth.LOGIN, params, BaseResp.class)
+        Server.instance().xPost(ApiConstant.Auth.REFRESH_TOKEN, params, BaseResp.class)
                 .map(new ConvertFunction<BaseResp, Token>())
+                .flatMap((Function<Token, ObservableSource<User>>) token -> {
+                    HashMap<String, Object> up = newParams();
+                    return Server.instance().xGet(ApiConstant.Auth.LOGIN, up, User.class);
+                })
+                .compose(RxSchedulers.applyObservableAsync())
                 .subscribe(observer);
     }
 

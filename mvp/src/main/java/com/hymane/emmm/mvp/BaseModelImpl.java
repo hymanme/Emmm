@@ -2,6 +2,8 @@ package com.hymane.emmm.mvp;
 
 import java.util.HashMap;
 
+import io.reactivex.Observable;
+
 /**
  * Author   :hymane
  * Email    :hymanmee@gmail.com
@@ -17,5 +19,25 @@ public class BaseModelImpl implements IBaseContract.Model {
      */
     protected HashMap<String, Object> newParams() {
         return new HashMap<>();
+    }
+
+
+    @Override
+    public void asyncGet(Observable... asyncTask) {
+
+    }
+
+    @Override
+    public void asyncPost() {
+
+    }
+
+    @Override
+    public void syncGet() {
+    }
+
+    @Override
+    public void syncPost() {
+
     }
 }

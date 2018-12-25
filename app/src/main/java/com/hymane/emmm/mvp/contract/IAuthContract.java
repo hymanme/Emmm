@@ -4,7 +4,7 @@ import com.hymane.emmm.mvp.IBaseContract;
 import com.hymane.emmm.network.utils.SimpleObserver;
 import com.hymane.emmm.response.BaseResp;
 import com.hymane.emmm.response.RefreshToken;
-import com.hymane.emmm.response.Token;
+import com.hymane.emmm.response.User;
 
 /**
  * Author   :hymane
@@ -14,7 +14,7 @@ import com.hymane.emmm.response.Token;
  */
 public interface IAuthContract {
     interface Model extends IBaseContract.Model {
-        void login(String userId, String password, SimpleObserver<Token> observer);
+        void login(String userId, String password, SimpleObserver<User> observer);
 
         void refreshToken(String token, SimpleObserver<BaseResp<RefreshToken>> observer);
     }

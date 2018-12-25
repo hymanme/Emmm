@@ -9,8 +9,6 @@ import com.hymane.emmm.network.utils.SimpleObserver;
 import java.util.Map;
 
 import io.reactivex.Observable;
-import okhttp3.ResponseBody;
-import retrofit2.Response;
 
 /**
  * Author   :hymane
@@ -38,19 +36,7 @@ public class Server {
     }
 
     /***
-     * 基本get方法
-     * @param url 请求网址
-     * @param parameters 请求参数
-     * @return
-     */
-    public <T> Observable<T> xGet(final String url, Map<String, Object> parameters, Class<T> clazz) {
-        return mApiService.get(url, parameters)
-                .map(new XNetworkFunction<T>(clazz))
-                .compose(RxSchedulers.<T>applyObservableAsync());
-    }
-
-    /***
-     * 简单get接口
+     * 简单的单次get接口
      * @param url 请求网址
      * @param parameters 请求参数
      * @param observer 回调
@@ -64,19 +50,18 @@ public class Server {
     }
 
     /***
-     * 基本post方法
+     * 基本get方法
      * @param url 请求网址
      * @param parameters 请求参数
      * @return
      */
-    public <T> Observable<T> xPost(final String url, Map<String, Object> parameters, Class<T> clazz) {
-        return mApiService.post(url, parameters)
-                .map(new XNetworkFunction<T>(clazz))
-                .compose(RxSchedulers.<T>applyObservableAsync());
+    public <T> Observable<T> xGet(final String url, Map<String, Object> parameters, Class<T> clazz) {
+        return mApiService.get(url, parameters)
+                .map(new XNetworkFunction<T>(clazz));
     }
 
     /***
-     * 简单post接口
+     * 简单的单次post接口
      * @param url 请求网址
      * @param fields 请求数据体
      * @param observer 回调
@@ -90,7 +75,18 @@ public class Server {
     }
 
     /***
-     * 简单put接口
+     * 基本post方法
+     * @param url 请求网址
+     * @param parameters 请求参数
+     * @return
+     */
+    public <T> Observable<T> xPost(final String url, Map<String, Object> parameters, Class<T> clazz) {
+        return mApiService.post(url, parameters)
+                .map(new XNetworkFunction<T>(clazz));
+    }
+
+    /***
+     * 简单的单次put接口
      * @param url 请求网址
      * @param fields 请求数据体
      * @param observer 回调
@@ -102,6 +98,7 @@ public class Server {
                 .compose(RxSchedulers.<T>applyObservableAsync())
                 .subscribe(observer);
     }
+
     /***
      * 基本post方法
      * @param url 请求网址
@@ -110,11 +107,11 @@ public class Server {
      */
     public <T> Observable<T> xPut(final String url, Map<String, Object> parameters, Class<T> clazz) {
         return mApiService.put(url, parameters)
-                .map(new XNetworkFunction<T>(clazz))
-                .compose(RxSchedulers.<T>applyObservableAsync());
+                .map(new XNetworkFunction<T>(clazz));
     }
+
     /***
-     * 简单delete接口
+     * 简单的单次delete接口
      * @param url 请求网址
      * @param fields 请求数据体
      * @param observer 回调
@@ -128,7 +125,7 @@ public class Server {
     }
 
     /***
-     * 简单patch接口
+     * 简单的单次patch接口
      * @param url 请求网址
      * @param fields 请求数据体
      * @param observer 回调

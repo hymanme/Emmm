@@ -11,8 +11,6 @@ import com.hymane.emmm.response.douban.MovieResp;
 import java.util.HashMap;
 import java.util.List;
 
-import io.reactivex.functions.Function;
-
 /**
  * Author   :hymane
  * Email    :hymanmee@gmail.com
@@ -26,13 +24,8 @@ public class MovieModelImpl extends BaseModelImpl implements IMovieContract.Mode
         params.put("start", start);
         params.put("count", count);
         Server.instance().xGet(ApiConstant.Movie.TOP250, params, MovieResp.class)
-                .map(new Function<MovieResp, List<MovieResp.Subject>>() {
-                    @Override
-                    public List<MovieResp.Subject> apply(MovieResp movieResp) throws Exception {
-                        return movieResp.subjects;
-                    }
-                })
-                .compose(RxSchedulers.<List<MovieResp.Subject>>applyObservableAsync())
+                .map(movieResp -> movieResp.subjects)
+                .compose(RxSchedulers.applyObservableAsync())
                 .subscribe(observer);
     }
 }
