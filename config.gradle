@@ -1,0 +1,29 @@
+// Module Define
+def isRunAlone = false
+ext.isRunAlone = isRunAlone
+
+// Common Compile Version
+ext._compileSdkVersion = 28
+ext._buildToolsVersion = ''
+ext._minSdkVersion = 16
+ext._targetSdkVersion = 28
+ext._versionCode = 1
+ext._versionName = '1.0'
+
+// Library Version
+def supportVersion = '1.1.0-alpha01'
+def versions = [:]
+ext.versions = versions
+versions.appcompat = supportVersion
+versions.recyclerview = supportVersion
+versions.swiperefreshlayout = supportVersion
+versions.material = '1.0.0'
+versions.glide = '4.8.0'
+versions.butterknife = '10.0.0'
+versions.butterknife_compiler = '10.0.0'
+versions.rxjava = '2.1.17'
+versions.rxandroid = '2.0.2'
+versions.multitype = '3.5.0'
+
+versions.arouter_api = '1.4.1'
+versions.arouter_compiler = '1.2.2'

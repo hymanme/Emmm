@@ -1,0 +1,54 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
+apply from: '../config.gradle'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    // appcompat
+    api "androidx.appcompat:appcompat:$versions.appcompat"
+    api "androidx.recyclerview:recyclerview:$versions.recyclerview"
+    api "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swiperefreshlayout"
+    api "com.google.android.material:material:$versions.material"
+
+    // Glide
+    api "com.github.bumptech.glide:glide:$versions.glide"
+
+    // butterknife
+    api "com.jakewharton:butterknife:$versions.butterknife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterknife_compiler"
+
+    // RxJava2 & RxAndroid2
+    api "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+    api "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+
+    // multitype
+    api "me.drakeet.multitype:multitype:$versions.multitype"
+
+    // ARouter,compiler需在各个module中引入
+    api "com.alibaba:arouter-api:$versions.arouter_api"
+
+    testImplementation 'junit:junit:4.12'
+}

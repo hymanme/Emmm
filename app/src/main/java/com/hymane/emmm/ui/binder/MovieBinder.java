@@ -39,11 +39,6 @@ public class MovieBinder extends ItemViewBinder<MovieResp.Subject, MovieBinder.M
     @Override
     protected void onBindViewHolder(@NonNull MovieViewHolder holder, @NonNull MovieResp.Subject item) {
         holder.bind(item);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
     }
 
     public class MovieViewHolder extends BaseViewHolder<MovieResp.Subject> {
@@ -64,6 +59,12 @@ public class MovieBinder extends ItemViewBinder<MovieResp.Subject, MovieBinder.M
                     .into(pic);
             title.setText(data.title);
             author.setText(data.directors.get(0).name);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
     }
 }

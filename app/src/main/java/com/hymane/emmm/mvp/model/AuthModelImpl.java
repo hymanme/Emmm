@@ -1,9 +1,9 @@
 package com.hymane.emmm.mvp.model;
 
+import com.hymane.emmm.api.ApiConstant;
 import com.hymane.emmm.mvp.BaseModelImpl;
 import com.hymane.emmm.mvp.contract.IAuthContract;
 import com.hymane.emmm.network.Server;
-import com.hymane.emmm.network.api.ApiConstant;
 import com.hymane.emmm.network.function.ConvertFunction;
 import com.hymane.emmm.network.utils.RxSchedulers;
 import com.hymane.emmm.network.utils.SimpleObserver;
