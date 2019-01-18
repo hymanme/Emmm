@@ -5,6 +5,7 @@ import android.net.ParseException;
 import android.util.Log;
 
 import com.google.gson.JsonParseException;
+import com.hymane.emmm.core.rxbus.RxCompositeManager;
 
 import org.json.JSONException;
 

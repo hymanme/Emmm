@@ -1,4 +1,4 @@
-package com.hymane.emmm.network.utils;
+package com.hymane.emmm.core.rxbus;
 
 import java.util.HashMap;
 import java.util.Map;

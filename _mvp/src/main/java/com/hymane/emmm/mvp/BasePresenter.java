@@ -2,7 +2,7 @@ package com.hymane.emmm.mvp;
 
 import android.util.Log;
 
-import com.hymane.emmm.network.utils.RxCompositeManager;
+import com.hymane.emmm.core.rxbus.RxCompositeManager;
 
 import java.lang.ref.WeakReference;
 
