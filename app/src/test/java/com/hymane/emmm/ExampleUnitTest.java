@@ -62,13 +62,20 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void testCast(){
-        A cast = A.class.cast(new B());
-        B b = new B();
+    public void test2() {
+        Father f = new Son();
+        f.say();
     }
 
-    class A {}
-    class B extends A{
+    static class Father {
+        private void say() {
+            System.out.println("father: hi");
+        }
+    }
 
+    static class Son extends Father {
+        private void say() {
+            System.out.println("Son: hi");
+        }
     }
 }

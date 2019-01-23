@@ -55,6 +55,10 @@ dependencies {
     implementation project(':_mvp')
     implementation project(':_network')
 
+    // [:core]组件已经引入butterknife库，业务模块仅需引入其编译库即可(必需)
+    api "com.jakewharton:butterknife:$versions.butterknife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterknife_compiler"
+
     annotationProcessor "com.alibaba:arouter-compiler:$versions.arouter_compiler"
 
     testImplementation 'junit:junit:4.12'

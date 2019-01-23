@@ -33,17 +33,14 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
-
     implementation project(':_core')
     implementation project(':_mvp')
     implementation project(':_network')
-    if(!isRunAlone.toBoolean()){
+    if (!isRunAlone.toBoolean()) {
         implementation project(':reader')
     }
-
-    // [:core]组件已经引入butterknife库，业务模块仅需引入编译库即可(必需)
+    // [:core]组件已经引入butterknife库，业务模块仅需引入其编译库即可(必需)
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1-beta01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1-beta01'

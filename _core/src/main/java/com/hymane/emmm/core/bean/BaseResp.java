@@ -1,4 +1,4 @@
-package com.hymane.emmm.network.response;
+package com.hymane.emmm.core.bean;
 
 import java.io.Serializable;
 

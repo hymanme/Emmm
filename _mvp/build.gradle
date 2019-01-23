@@ -27,7 +27,6 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api project(':_core')
-    api project(':_network')
 
     testImplementation 'junit:junit:4.12'
 }

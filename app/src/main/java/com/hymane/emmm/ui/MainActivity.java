@@ -1,7 +1,10 @@
 package com.hymane.emmm.ui;
 
+import android.widget.Button;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.hymane.emmm.R;
+import com.hymane.emmm.core.rxbus.RxBusHelper;
 import com.hymane.emmm.core.ui.base.BaseActivity;
 
 import butterknife.OnClick;
@@ -25,6 +28,16 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initEvents() {
+        RxBusHelper.doOnChildThread(Integer.class, new RxBusHelper.OnEventListener<Integer>() {
+            @Override
+            public void onEvent(Integer integer) {
+                ((Button)findViewById(R.id.button)).setText("修改了");
+            }
 
+            @Override
+            public void onError() {
+
+            }
+        });
     }
 }

@@ -1,6 +1,6 @@
 package com.hymane.emmm.network.function;
 
-import com.hymane.emmm.network.response.BaseResp;
+import com.hymane.emmm.core.bean.BaseResp;
 
 import io.reactivex.functions.Function;
 
