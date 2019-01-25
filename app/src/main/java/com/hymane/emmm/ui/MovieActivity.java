@@ -52,7 +52,7 @@ public class MovieActivity extends BaseListActivity {
         }
     }
 
-    private IMovieContract.ViewImpl view = new IMovieContract.ViewImpl() {
+    private IMovieContract.View view = new IMovieContract.ViewImpl() {
         @Override
         public void onGetTopMovies(List<MovieResp.Subject> subjects) {
             notifyItemRangeInserted(subjects);

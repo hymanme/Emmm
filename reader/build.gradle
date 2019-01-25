@@ -1,3 +1,4 @@
+apply plugin: 'com.jakewharton.butterknife'
 apply from: '../config.gradle'
 
 if (isRunAlone.toBoolean()) {
@@ -12,8 +13,8 @@ android {
 
     resourcePrefix "reader_"
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion _minSdkVersion
+        targetSdkVersion _targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -49,19 +50,18 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
 
     implementation project(':_core')
     implementation project(':_mvp')
     implementation project(':_network')
 
     // [:core]组件已经引入butterknife库，业务模块仅需引入其编译库即可(必需)
-    api "com.jakewharton:butterknife:$versions.butterknife"
     annotationProcessor "com.jakewharton:butterknife-compiler:$versions.butterknife_compiler"
 
     annotationProcessor "com.alibaba:arouter-compiler:$versions.arouter_compiler"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$versions.junit"
     androidTestImplementation 'androidx.test:runner:1.1.1-beta01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1-beta01'
 }

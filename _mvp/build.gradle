@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply from: '../config.gradle'
 android {
     compileSdkVersion 28
 
@@ -28,5 +28,5 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api project(':_core')
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$versions.junit"
 }

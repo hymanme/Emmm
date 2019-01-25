@@ -54,5 +54,5 @@ dependencies {
     // ARouter,compiler需在各个module中引入
     api "com.alibaba:arouter-api:$versions.arouter_api"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation "junit:junit:$versions.junit"
 }
