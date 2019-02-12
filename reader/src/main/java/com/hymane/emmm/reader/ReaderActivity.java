@@ -1,12 +1,11 @@
 package com.hymane.emmm.reader;
 
-import android.os.Bundle;
+import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.hymane.emmm.core.rxbus.RxBusHelper;
+import com.hymane.emmm.core.ui.base.BaseActivity;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import butterknife.OnClick;
 
 /**
@@ -16,15 +15,31 @@ import butterknife.OnClick;
  * Description:
  */
 @Route(path = "/reader/ReaderActivity")
-public class ReaderActivity extends AppCompatActivity {
-    @OnClick(R2.id.tv_hh)
+public class ReaderActivity extends BaseActivity {
+    @OnClick(R2.id.tv_reader)
     void hh() {
         RxBusHelper.post(1);
+        finish();
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void initContentView() {
         setContentView(R.layout.reader_activity_home);
+    }
+
+    @Override
+    protected void initData() {
+        setTitle("Reader");
+    }
+
+    @Override
+    protected void initEvents() {
+        findViewById(R.id.tv_reader).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RxBusHelper.post(1);
+                finish();
+            }
+        });
     }
 }

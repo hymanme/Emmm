@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.hymane.emmm.core.R;
 
@@ -27,6 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected final String TAG = getClass().getSimpleName();
     protected Toolbar mToolbar;
     protected Unbinder unbinder;
+    protected TextView mTitleView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,9 +78,26 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override
+    public void setTitle(int titleId) {
+        super.setTitle(titleId);
+        if (mTitleView != null) {
+            mTitleView.setText(getResources().getString(titleId));
+        }
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        super.setTitle(title);
+        if (mTitleView != null) {
+            mTitleView.setText(title);
+        }
+    }
+
+    @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar = findViewById(R.id.toolbar);
+        mTitleView = findViewById(R.id.tv_title);
         initToolBar(mToolbar);
     }
 

@@ -56,13 +56,15 @@ public class NetworkFunction<T> implements Function<Response<ResponseBody>, T> {
      * @param observer
      * @return
      */
+    @SuppressWarnings("unchecked")
     private Class<T> getClassFromInterface(Observer<T> observer) {
         try {
             Type[] interfaceTypes = observer.getClass().getGenericInterfaces();
             Type type;
-            if (interfaceTypes.length == 0) { //类实现了Observer这个接口
+            if (interfaceTypes.length == 0) {
+                //未实现任何接口
                 type = observer.getClass().getGenericSuperclass();
-            } else { //直接实现Observer
+            } else {
                 type = interfaceTypes[0];
             }
             if (type == null) {

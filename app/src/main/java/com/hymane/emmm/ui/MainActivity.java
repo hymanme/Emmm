@@ -19,6 +19,8 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initContentView() {
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        setTitle("Movie");
     }
 
     @Override

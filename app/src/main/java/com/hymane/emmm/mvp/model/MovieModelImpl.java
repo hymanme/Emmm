@@ -27,5 +27,7 @@ public class MovieModelImpl extends BaseModelImpl implements IMovieContract.Mode
                 .map(movieResp -> movieResp.subjects)
                 .compose(RxSchedulers.applyObservableAsync())
                 .subscribe(observer);
+
+        Server.instance().get("",params,observer);
     }
 }

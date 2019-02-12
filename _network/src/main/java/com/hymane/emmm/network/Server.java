@@ -1,5 +1,6 @@
 package com.hymane.emmm.network;
 
+import com.hymane.emmm.network.function.DownloadFunction;
 import com.hymane.emmm.network.function.NetworkFunction;
 import com.hymane.emmm.network.function.XNetworkFunction;
 import com.hymane.emmm.network.utils.RxSchedulers;
@@ -9,6 +10,7 @@ import com.hymane.emmm.network.utils.SimpleObserver;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 
 /**
  * Author   :hymane
@@ -144,10 +146,10 @@ public class Server {
      * @param fields 请求数据体
      * @param observer 回调
      */
-//    public void download(final String url, Map<String, String> fields, Observer<File> observer) {
-//        mApiService.<ResponseBody>download(url)
-//                .map(new DownloadFunction(fields.get("fileName")))
-//                .compose(RxSchedulers.applyObservableAsync())
-//                .subscribe(observer);
-//    }
+    public void download(final String url, Map<String, String> fields, Observer<String> observer) {
+        mApiService.download(url)
+                .map(new DownloadFunction(fields.get("fileName")))
+                .compose(RxSchedulers.<String>applyObservableAsync())
+                .subscribe(observer);
+    }
 }

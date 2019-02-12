@@ -1,7 +1,5 @@
 package com.hymane.emmm.mvp;
 
-import io.reactivex.Observable;
-
 /**
  * Author   :hymane
  * Email    :hymanmee@gmail.com
@@ -17,15 +15,6 @@ public interface IBaseContract {
      * <可选>
      */
     interface Model {
-        //异步多请求并发执行
-        void asyncGet(Observable... asyncTask);
-
-        void asyncPost();
-
-        //同步多任务顺序执行
-        void syncGet();
-
-        void syncPost();
     }
 
     /***
